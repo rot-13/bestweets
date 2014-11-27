@@ -1,0 +1,67 @@
+$twitter-color: #55acee
+$font-awesome: 'FontAwesome'
+
+@font-face
+  font-family: $font-awesome
+  src: url('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.eot')
+  src: url('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.woff') format('woff'), url('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.ttf') format('truetype'), url('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg')
+  font-weight: normal
+  font-style: normal
+
+.main-header
+  text-align: center
+
+  .twitter-form
+    margin-top: 3rem
+
+.tweets-container
+  .spinner
+    display: none
+    margin-top: 8rem
+    text-align: center
+    color: $twitter-color
+    font:
+      family: $font-awesome
+      size: 10rem
+    -webkit-animation: spin 1s infinite alternate
+    -moz-animation: spin 1s infinite alternate
+    -o-animation: spin 1s infinite alternate
+    animation: spin 1s infinite alternate
+
+  .tweet-list
+    display: block
+
+  &.spin
+    .spinner
+      display: block
+
+    .tweet-list
+      display: none
+
+@-webkit-keyframes spin
+  from
+    opacity: 0
+  to
+    opacity: 1
+    transform: scale(1.1)
+
+@-moz-keyframes spin
+  from
+    opacity: 0
+  to
+    opacity: 1
+    transform: scale(1.1)
+
+@-o-keyframes spin
+  from
+    opacity: 0
+  to
+    opacity: 1
+    transform: scale(1.1)
+
+@keyframes spin
+  from
+    opacity: 0
+  to
+    opacity: 1
+    transform: scale(1.1)

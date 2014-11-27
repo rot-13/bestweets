@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %title Best tweets by any user
+
+    %script{type: 'text/javascript', src: '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'}    
+    %script{type: 'text/javascript', src: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js'}    
+    %script{type: 'text/javascript', src: '/javascripts/index.js'}    
+
+    %link{rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css'}
+    %link{rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'}
+    %link{rel: 'stylesheet', href: '/stylesheets/index.css'}
+  %body.container
+    %header.main-header.jumbotron
+      %h1 Get the best tweets for any user
+
+      .twitter-form.form-inline
+        .form-group-lg
+          .input-group
+            .input-group-addon @
+            %input.form-control.js-username{type: 'text', placeholder: 'stephenfry'}
+          %button.btn.btn-lg.btn-primary.js-submit{type: 'button'} Show Best
+
+    %section.tweets-container.js-tweets-container
+      .spinner.fa-twitter
+      .tweet-list.js-tweet-list
+
+    :javascript
+      window.twttr = (function (d, s, id) {
+      var t, js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src= "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+      }(document, "script", "twitter-wjs"));
+
