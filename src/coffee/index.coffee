@@ -9,8 +9,13 @@ $ ->
     $tweets_container.addClass('spin')
 
     username = $username.val()
-    $.getJSON "/#{username}", (response) ->
-      ($tweet_list.append(tweet_html) for tweet_html in response.tweets)
-      twttr.widgets.load($tweet_list[0])
+    if username.length > 0
+      $.getJSON "/best/#{username}", (response) ->
+        if response.error
+          $tweet_list.html(response.error)
+        else
+          $tweet_list.empty()
+          ($tweet_list.append(tweet_html) for tweet_html in response.tweets)
+          twttr.widgets.load($tweet_list[0])
 
-      $tweets_container.removeClass('spin')
+        $tweets_container.removeClass('spin')

@@ -36,6 +36,14 @@ get '/' do
   haml :index
 end
 
-get '/:username' do
-  json tweets: top_10(fetch_tweets(params[:username]))
+get '/best/:username' do
+  begin
+    json tweets: top_10(fetch_tweets(params[:username]))
+  rescue Twitter::Error::NotFound
+    not_found = haml :not_found
+    json error: not_found
+  rescue Twitter::Error
+    error = haml :twitter_error
+    json error: error
+  end
 end
