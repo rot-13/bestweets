@@ -5,7 +5,7 @@ $ ->
   $tweets_container = $('.js-tweets-container')
   $tweet_list   = $('.js-tweet-list')
 
-  $submit.on 'click', ->
+  getTweets = ->
     $tweets_container.addClass('spin')
 
     username = $username.val()
@@ -19,3 +19,7 @@ $ ->
           twttr.widgets.load($tweet_list[0])
 
         $tweets_container.removeClass('spin')
+
+  $submit.on 'click', getTweets
+  $username.on 'keyup', (e) ->
+    getTweets() if e.which == 13
