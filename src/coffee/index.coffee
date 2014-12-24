@@ -23,3 +23,8 @@ $ ->
   $submit.on 'click', getTweets
   $username.on 'keyup', (e) ->
     getTweets() if e.which == 13
+
+  path = window.location.pathname.slice(1)
+  if path != ''
+    $username.val(path)
+    getTweets()

@@ -32,10 +32,6 @@ def top_10(tweets)
   end
 end
 
-get '/' do
-  haml :index
-end
-
 get '/best/:username' do
   begin
     json tweets: top_10(fetch_tweets(params[:username]))
@@ -46,4 +42,8 @@ get '/best/:username' do
     error = haml :twitter_error
     json error: error
   end
+end
+
+get '/?:username?' do
+  haml :index
 end
