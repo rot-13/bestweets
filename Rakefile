@@ -7,11 +7,12 @@ namespace :js do
   task :compile do
     source = "#{File.dirname(__FILE__)}/src/coffee/"
     javascripts = "#{File.dirname(__FILE__)}/public/javascripts/"
+    FileUtils.mkdir_p javascripts
 
     Dir.foreach(source) do |cf|
       unless cf == '.' || cf == '..'
         js = CoffeeScript.compile File.read("#{source}#{cf}")
-        open "#{javascripts}#{cf.gsub('.coffee', '.js')}", 'w' do |f|
+        open "#{javascripts}#{cf.gsub('.coffee', '.js')}", 'w+' do |f|
           f.puts js
         end
       end
@@ -26,11 +27,12 @@ namespace :css do
   task :compile do
     source = "#{File.dirname(__FILE__)}/src/sass/"
     stylesheets = "#{File.dirname(__FILE__)}/public/stylesheets/"
+    FileUtils.mkdir_p stylesheets
 
     Dir.foreach(source) do |cf|
       unless cf == '.' || cf == '..'
         css = Sass::Engine.new(File.read("#{source}#{cf}")).render
-        open "#{stylesheets}#{cf.gsub('.sass', '.css')}", 'w' do |f|
+        open "#{stylesheets}#{cf.gsub('.sass', '.css')}", 'w+' do |f|
           f.puts css
         end
       end
